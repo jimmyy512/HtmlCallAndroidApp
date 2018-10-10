@@ -1,7 +1,7 @@
 # callAppTest
 
-> 利用網頁呼叫app的不同測試
-> 測試代碼在src/components/HelloWorld.vue
+> 利用網頁呼叫app的不同測試 
+測試代碼在src/components/HelloWorld.vue
 
 ## Build Setup
 
