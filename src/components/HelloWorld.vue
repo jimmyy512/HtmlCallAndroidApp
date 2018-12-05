@@ -37,7 +37,7 @@ export default {
   name: 'HelloWorld',
   data () {
     return {
-      iframe:null
+      iframe:null,
     }
   },
   created(){
@@ -50,26 +50,28 @@ export default {
   methods:{
     callChromeIntent(){
       console.log("callChromeIntent");
-      var openTime = +new Date();
+      let openTime = +new Date();
       window.location.href = "intent://lottery/#Intent;scheme=gti;package=com.example.hello;end";
-      // var timer = setTimeout(function () {
-      //     if ((new Date()) - openTime < 2200) {//加了200ms基准误差
-      //         window.location.href = 'http://www.gt-igaming.com/?language=zh-Hant';
-      //     }
-      //     if ((new Date()) - openTime > 2200) {
-      //         clearTimeout(timer);
-      //     }
-      // }, 2000);
+      var timer = setTimeout(function () {
+          if ((new Date()) - openTime < 2200) {//加了200ms基准误差
+            alert("開啟App失敗")
+          }
+          else
+          {
+            //開啟app成功
+          }
+      }, 2000);
     },
     hrefOpen(){
-      var openTime = +new Date();
+      let openTime = +new Date();
       window.location.href = 'gti://lottery'
       var timer = setTimeout(function () {
           if ((new Date()) - openTime < 2200) {//加了200ms基准误差
-              window.location.href = 'http://www.gt-igaming.com/?language=zh-Hant';
+            alert("開啟App失敗");
           }
-          if ((new Date()) - openTime > 2200) {
-              clearTimeout(timer);
+          else
+          {
+            //開啟app成功
           }
       }, 2000);
     },
@@ -79,20 +81,17 @@ export default {
       this.iframe.src = 'gti://lottery';
       this.iframe.style.display = 'none';
       document.body.appendChild(this.iframe);
-      // setTimeout(function() {
-      //   // 执行成功后移除iframe
-      //   document.body.removeChild(this.iframe);
-      //   //setTimeout小于2000通常认为是唤起APP失败 
-      //   if (Date.now() - last < 2000) {
-      //           // 执行失败函数
-      //           // 这里需要考虑一下之前知乎遇到的那个问题（浏览器询问导致时间小于2S）
-      //   } 
-      //   else {
-
-      //           //  执行成功函数
-
-      //   }
-      // }, timer);
+      let last=+newDate();
+      setTimeout(function() {
+        document.body.removeChild(this.iframe);
+        //setTimeout小于2000通常认为是唤起APP失败 
+        if (Date.now() - last < 2200) {
+            alert("開啟App失敗");
+        } 
+        else {
+            //  执行成功函数
+        }
+      }, 2000);
 
     },
     submitFn(){
